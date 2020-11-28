@@ -24,6 +24,11 @@ class Region(Enum):
     Chel = "Челябинская область"
 
 
+# список регионов по ОЭС
+SYS_REGIONS = {
+    SysID.URAL: [Region.Bash, Region.Oren, Region.Perm, Region.Sverd, Region.Tymen, Region.Chel]
+}
+
 # Названия регионов
 URAL_FILE_NAMES = {
     Region.Bash: 'Республика_Башкортостан.csv',
