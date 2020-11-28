@@ -9,6 +9,11 @@ class Districts(Enum):
     URAL = "Уральский федеральный округ"
 
 
+class SysID(Enum):
+    """ Идентификаторы ОЭС по данным сайта br.so-ups.ru """
+    URAL = 630000
+
+
 class Region(Enum):
     """ Регионы """
     Bash = "Республика Башкортостан"
