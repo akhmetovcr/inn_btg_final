@@ -40,6 +40,11 @@ def get_data_frame_by_path(path) -> pd.DataFrame:
             df = region_df
         else:
             df = df.merge(region_df, on='DATE')
+
+        # столбец DATE записываем в индексы
+        df.index = df['DATE']
+        df = df.drop(columns=['DATE'])
+
     return df
 
 
