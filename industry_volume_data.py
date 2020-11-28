@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import numpy as np
 import datetime as dt
 
 from data.industry import Industries
@@ -17,9 +18,20 @@ def parse_industry_volume(file_name, volume_name):
     json_df = pd.read_json(file_name)
     for month_ind, month in enumerate(range(1, 13)):
         # даты
-        dates = [dt.date(year, month, day=1) for year in YEAR_VOLUMES]
+        dates = np.array([dt.date(year, month, day=1) for year in YEAR_VOLUMES])
         # значения
         volumes = json_df['data'][month_ind][1:]
+
+        # фильтруем от None
+        filter_v = []
+        filter_d = []
+        for v, d in zip(volumes, dates):
+            if v is not None:
+                filter_v.append(v)
+                filter_d.append(d)
+        volumes = filter_v
+        dates = filter_d
+
         month_volumes = pd.DataFrame(volumes,
                                      columns=[volume_name],
                                      index=dates)
@@ -27,7 +39,20 @@ def parse_industry_volume(file_name, volume_name):
         # industry_df[dates] = month_volumes
         industry_df = pd.DataFrame.append(industry_df, month_volumes)
 
+    # пересчитаем данные не как накопительные
     industry_df = industry_df.sort_index()
+
+    # необходимо найти разности соседних значений
+    for year in YEAR_VOLUMES:
+        start_date = dt.date(year, 1, 1)
+        before_value = industry_df.loc[start_date]
+        for month in range(2, 13):
+            cur_date = dt.date(year, month, 1)
+            # в текущий день уменьшаем на значение предыдущего
+            if cur_date in industry_df.index:
+                industry_df.loc[cur_date] -= before_value
+                before_value += industry_df.loc[cur_date]
+
     return industry_df
 
 
