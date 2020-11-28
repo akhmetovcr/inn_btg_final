@@ -29,9 +29,15 @@ def parse_e_use_df(fn, sys_id: SysID):
     df = df[df['POWER_SYS_ID'] != 0]
     # фильтруем по ОЭС
     df = df[df['POWER_SYS_ID'] == sys_id.value]
+    # столбец DATE_TIME записываем в индексы
+    df.index = df['DATE_TIME']
+    df = df.drop(columns=['DATE_TIME'])
     return df
 
 
+# данные по потреблению в ОЭС Урал
+E_USE_DATA_URAL = parse_e_use_df('data/2014_2020.csv', SysID.URAL)
+
+
 if __name__ == '__main__':
-    df = parse_e_use_df('data/2014_2020.csv', SysID.URAL)
-    print(df)
+    print(E_USE_DATA_URAL)
