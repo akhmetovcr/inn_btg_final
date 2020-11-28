@@ -24,7 +24,7 @@ URAL_FILE_NAMES = {
     Region.Bash: 'Республика_Башкортостан.csv',
     Region.Oren: 'Оренбургская_область.csv',
     Region.Perm: 'Пермский_край.csv',
-    Region.Sverd: 'Свердловcкая_область.csv',
+    Region.Sverd: 'Свердловская_область.csv',
     Region.Tymen: 'Тюменская_область.csv',
     Region.Chel: 'Челябинская_область.csv',
 }
