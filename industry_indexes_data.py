@@ -44,12 +44,15 @@ def get_data_frame_by_path(path) -> pd.DataFrame:
 
 
 # Парсим файлы в датафреймы
-IPM_DF = get_data_frame_by_path(os.path.join('data', 'ipm', 'month'))
-IPM_FARM_DF = get_data_frame_by_path(os.path.join('data', 'ipm_farm', 'month'))
-OPT_ORG_TRADE_DF = get_data_frame_by_path(os.path.join('data', 'opt_org_trade', 'month'))
-TRADE_EXPORT_DF = get_data_frame_by_path(os.path.join('data', 'trade_export', 'month'))
+BUILD_WORK_DF = get_data_frame_by_path(os.path.join('data', 'industrial_indexes', 'build_works', 'month'))
+IPM_DF = get_data_frame_by_path(os.path.join('data', 'industrial_indexes', 'ipm', 'month'))
+IPM_FARM_DF = get_data_frame_by_path(os.path.join('data', 'industrial_indexes', 'ipm_farm', 'month'))
+OPT_ORG_TRADE_DF = get_data_frame_by_path(os.path.join('data', 'industrial_indexes', 'opt_org_trade', 'month'))
+RETAIL_TRADE_DF = get_data_frame_by_path(os.path.join('data', 'industrial_indexes', 'retail_trade', 'month'))
+TRADE_EXPORT_DF = get_data_frame_by_path(os.path.join('data', 'industrial_indexes', 'trade_export', 'month'))
+TRADE_IMPORT_DF = get_data_frame_by_path(os.path.join('data', 'industrial_indexes', 'trade_import', 'month'))
 
 
 if __name__ == '__main__':
-    for df in [IPM_DF, IPM_FARM_DF, OPT_ORG_TRADE_DF, TRADE_EXPORT_DF]:
+    for df in [BUILD_WORK_DF, IPM_DF, IPM_FARM_DF, OPT_ORG_TRADE_DF, RETAIL_TRADE_DF, TRADE_EXPORT_DF]:
         print(df)
